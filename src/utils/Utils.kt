@@ -1,5 +1,7 @@
 package utils
 
+fun Boolean.toInt() = if (this) 1 else 0
+
 /**
  * Groups lines separated by an empty line
  */
