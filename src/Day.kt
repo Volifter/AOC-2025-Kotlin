@@ -16,7 +16,7 @@ open class Day<T> {
 
     val exampleInputs = Path("inputs")
         .listDirectoryEntries("${dayName}_test*.txt")
-        .sortedBy { it.toString() }
+        .sorted()
         .takeIf { it.isNotEmpty() }
         ?.map { it.readLines() }
         ?: throw IllegalStateException("Missing example inputs for $dayName")
@@ -34,7 +34,7 @@ open class Day<T> {
         val operator = "${if (success) "=" else "!"}="
 
         println(
-            "  Test ${Colors.BLUE.code}#$testId${Colors.RESET.code}: "
+            "  Test ${Colors.BLUE.code}$testId${Colors.RESET.code}: "
             + "$colorCode$got${Colors.RESET.code} "
             + "$operator "
             + "${Colors.GREEN.code}$expected "
@@ -52,7 +52,7 @@ open class Day<T> {
             else -> throw IllegalArgumentException("Invalid part: $partId")
         }
 
-        println("PART ${Colors.YELLOW.code}$partId${Colors.RESET.code}:")
+        println("Part ${Colors.BLUE.code}$partId${Colors.RESET.code}:")
 
         exampleInputs.zip(outputs).forEachIndexed { i, (input, expected) ->
             var got: T
@@ -61,9 +61,9 @@ open class Day<T> {
             reportTest(i + 1, expected, got, time)
         }
 
-        var got: T
+        var answer: T
         val time = measureTimeMillis {
-            got = part(
+            answer = part(
                 puzzleInput
                     ?: throw IllegalStateException(
                         "Missing puzzle input for $dayName"
@@ -75,8 +75,8 @@ open class Day<T> {
             println()
 
         println(
-            "  ${Colors.BLUE.code}Result${Colors.RESET.code}: "
-            + "${Colors.YELLOW.code}$got "
+            "  Answer${Colors.RESET.code}: "
+            + "${Colors.YELLOW.code}$answer "
             + "${Colors.GRAY.code}(${time}ms)${Colors.RESET.code}")
         println()
 
