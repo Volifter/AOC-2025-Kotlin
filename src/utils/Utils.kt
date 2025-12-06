@@ -14,6 +14,28 @@ fun groupLines(lines: List<String>): List<List<String>> =
     }
 
 /**
+ * Rotates lines clockwise.
+ * Assumes all lines have equal length.
+ */
+fun rotateLinesCW(lines: List<String>): List<String> =
+    lines.first().indices.map { j ->
+        lines.indices.reversed().joinToString("") { i ->
+            lines[i][j].toString()
+        }
+    }
+
+/**
+ * Rotates lines counterclockwise.
+ * Assumes all lines have equal length.
+ */
+fun rotateLinesCCW(lines: List<String>): List<String> =
+    lines.first().indices.reversed().map { j ->
+        lines.indices.joinToString("") { i ->
+            lines[i][j].toString()
+        }
+    }
+
+/**
  * Computes the GCD of its arguments
  */
 fun getGCD(vararg values: Long): Long =
