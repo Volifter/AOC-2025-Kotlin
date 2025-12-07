@@ -8,6 +8,9 @@ data class Field<T>(val data: List<List<T>>) {
     fun map(callback: (Coords2D) -> T) =
         buildField(size, callback)
 
+    fun find(callback: (Coords2D) -> Boolean) =
+        Coords2D.iterate(size).find(callback)
+
     fun getNeighbors(coords: Coords2D): Sequence<Coords2D> =
         coords.neighbors.filter { it in size }
 
