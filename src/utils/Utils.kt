@@ -2,6 +2,8 @@ package utils
 
 fun Boolean.toInt() = if (this) 1 else 0
 
+fun List<Int>.prod() = fold(1L) { acc, n -> acc * n }
+
 /**
  * Groups lines separated by an empty line
  */
