@@ -4,7 +4,7 @@ import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
 data class Coords3D(val x: Int, val y: Int, val z: Int): Comparable<Coords3D> {
-    val delta: Float get() = sqrt(1f * x * x + y * y + z * z)
+    val delta: Float get() = sqrt(1f * x * x + 1f * y * y + 1f * z * z)
 
     val manhattanDelta: Int get() =
         x.absoluteValue + y.absoluteValue + z.absoluteValue
@@ -44,4 +44,11 @@ data class Coords3D(val x: Int, val y: Int, val z: Int): Comparable<Coords3D> {
         (z - other.z).takeIf { it != 0 }
             ?: (y - other.y).takeIf { it != 0 }
             ?: (x - other.x)
+
+    operator fun get(i: Int): Int = when (i) {
+        0 -> x
+        1 -> y
+        2 -> z
+        else -> throw Error("invalid axis index: $i")
+    }
 }
