@@ -8,6 +8,8 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
 
     val manhattanDelta: Int get() = x.absoluteValue + y.absoluteValue
 
+    val area: Long get() = 1L * (x.absoluteValue + 1) * (y.absoluteValue + 1)
+
     val neighbors get() =
         directions.asSequence().map { direction -> this + direction }
 
@@ -76,4 +78,10 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
 
     override fun compareTo(other: Coords2D): Int =
         (y - other.y).takeIf { it != 0 } ?: (x - other.x)
+
+    operator fun get(i: Int) = when (i) {
+        0 -> x
+        1 -> y
+        else -> throw Error("invalid axis index")
+    }
 }
