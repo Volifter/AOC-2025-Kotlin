@@ -8,7 +8,7 @@ data class Coords2D(var x: Int, var y: Int): Comparable<Coords2D> {
 
     val manhattanDelta: Int get() = x.absoluteValue + y.absoluteValue
 
-    val area: Long get() = 1L * (x.absoluteValue + 1) * (y.absoluteValue + 1)
+    val area: Long get() = 1L * x.absoluteValue * y.absoluteValue
 
     val neighbors get() =
         directions.asSequence().map { direction -> this + direction }
